@@ -1,8 +1,30 @@
 import Lottie from "lottie-react";
 import React from "react";
 import RegisterLottiData from "../../assets/Lotti/register.json";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    console.log(name, email, password, photo);
+  };
+
+  // if (
+  //     password.length < 6 ||
+  //     !/[A-Z]/.test(password) ||
+  //     !/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)
+  //   ) {
+  //     toast.error(
+  //       "Password must be at least 6 character & one capital letter & one special character"
+  //     );
+  //     return;
+  //   }
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -11,7 +33,7 @@ const Register = () => {
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <h1 className="ml-8 mt-4 text-5xl font-bold">Register now!</h1>
-          <form className="card-body">
+          <form onSubmit={handleRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -30,6 +52,7 @@ const Register = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -53,6 +76,7 @@ const Register = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
