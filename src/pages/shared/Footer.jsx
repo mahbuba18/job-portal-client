@@ -9,7 +9,7 @@ const Footer = () => {
           <p>
             Online Job Portal
             <br />
-            Providing reliable Newa since 2020
+            Providing reliable jobs since 2020
           </p>
         </aside>
         <nav>
