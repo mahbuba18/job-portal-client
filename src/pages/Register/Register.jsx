@@ -1,9 +1,11 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useContext } from "react";
 import RegisterLottiData from "../../assets/Lotti/register.json";
 import toast from "react-hot-toast";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Register = () => {
+  const{createUser}=useContext(AuthContext)
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,9 +14,7 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
     console.log(name, email, password, photo);
-  };
-
-  // if (
+    // if (
   //     password.length < 6 ||
   //     !/[A-Z]/.test(password) ||
   //     !/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)
@@ -24,6 +24,16 @@ const Register = () => {
   //     );
   //     return;
   //   }
+  createUser(email,password)
+  .then(result=>{
+    console.log(result)
+  })
+  .catch(error=>{
+    console.log(error.message)
+  })
+  };
+
+  
 
   return (
     <div className="hero bg-base-200 min-h-screen">
