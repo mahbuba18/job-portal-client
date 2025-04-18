@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import RegisterLottiData from "../../assets/Lotti/register.json";
 import toast from "react-hot-toast";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import SocialLogin from "../shared/SocialLogin";
 
 const Register = () => {
   const{createUser}=useContext(AuthContext)
@@ -101,6 +102,7 @@ const Register = () => {
               <button className="btn btn-primary w-full">Register</button>
             </div>
           </form>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
