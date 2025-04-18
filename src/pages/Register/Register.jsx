@@ -3,10 +3,11 @@ import React, { useContext } from "react";
 import RegisterLottiData from "../../assets/Lotti/register.json";
 import toast from "react-hot-toast";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import SocialLogin from "../shared/SocialLogin";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const{createUser}=useContext(AuthContext)
+  const { createUser, handleUpdateProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,25 +17,26 @@ const Register = () => {
     const password = form.password.value;
     console.log(name, email, password, photo);
     // if (
-  //     password.length < 6 ||
-  //     !/[A-Z]/.test(password) ||
-  //     !/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)
-  //   ) {
-  //     toast.error(
-  //       "Password must be at least 6 character & one capital letter & one special character"
-  //     );
-  //     return;
-  //   }
-  createUser(email,password)
-  .then(result=>{
-    console.log(result)
-  })
-  .catch(error=>{
-    console.log(error.message)
-  })
+    //     password.length < 6 ||
+    //     !/[A-Z]/.test(password) ||
+    //     !/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)
+    //   ) {
+    //     toast.error(
+    //       "Password must be at least 6 character & one capital letter & one special character"
+    //     );
+    //     return;
+    //   }
+    createUser(email, password)
+      .then((result) => {
+        handleUpdateProfile(name, photo).then(() => {
+          toast.success("User created successfully");
+          navigate("/");
+        });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
-
-  
 
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -92,17 +94,22 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
-              {/* <label className="label">
+              <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
                 </a>
-              </label> */}
+              </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary w-full">Register</button>
             </div>
           </form>
-          <SocialLogin></SocialLogin>
+          <p className="text-center m-4">
+            Already have an account!!
+            <Link className="text-blue-600" to="/signin">
+              SignIn
+            </Link>
+          </p>
         </div>
       </div>
     </div>

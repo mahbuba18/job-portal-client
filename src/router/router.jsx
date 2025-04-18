@@ -17,7 +17,7 @@ import SignIn from "../pages/SignIn/SignIn";
             element:<Home></Home>,
         },
         {
-            path:'register',
+            path:'/register',
             element:<Register></Register>
         },
         {

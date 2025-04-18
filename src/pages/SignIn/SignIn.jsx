@@ -1,26 +1,32 @@
 import Lottie from "lottie-react";
 import React, { useContext } from "react";
-import loginLottieJSON from"../../assets/Lotti/login.json"
+import loginLottieJSON from "../../assets/Lotti/login.json";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
-    const{signInUser}=useContext(AuthContext)
+  const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log( email, password);
+    console.log(email, password);
 
-    signInUser(email,password)
-    .then(result=>{
-        console.log('sign in',result.user)
-    })
-    .catch(error=>{
-        console.log(error);
-    })
- 
+    signInUser(email, password)
+      .then((result) => {
+        toast.success("User signed in successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage =
+          error.message || "An error occurred. Please try again.";
+        toast.error(errorMessage);
+      });
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -31,7 +37,6 @@ const SignIn = () => {
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <h1 className="ml-8 mt-4 text-5xl font-bold">Login now!</h1>
           <form onSubmit={handleSignIn} className="card-body">
-           
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -44,7 +49,7 @@ const SignIn = () => {
                 required
               />
             </div>
-          
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -56,17 +61,25 @@ const SignIn = () => {
                 className="input input-bordered"
                 required
               />
-              {/* <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label> */}
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary w-full">Login</button>
+              <button className="btn btn-primary w-full">SignIn</button>
             </div>
           </form>
           <SocialLogin></SocialLogin>
+          <div>
+            <p className="text-center m-4">
+              Do not have an account?{" "}
+              <Link className="text-blue-600 font-bold" to="/register">
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

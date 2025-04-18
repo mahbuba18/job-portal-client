@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import logo from '../../assets/jobs_logo.png'
+import logo from "../../assets/jobs_logo.png";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
@@ -17,16 +18,14 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-       <NavLink to="/">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-       <NavLink to="/">Jobs</NavLink>
+        <NavLink to="/">Jobs</NavLink>
       </li>
       <li>
-       <NavLink to="/">About</NavLink>
+        <NavLink to="/">About</NavLink>
       </li>
-
-      
     </>
   );
   return (
@@ -60,25 +59,44 @@ const Navbar = () => {
           <img src={logo} alt="" />
           <h3 className="text-3xl">Job Portal</h3>
         </a>
-
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        {user ? (
-          <>
-            <button onClick={handleSignOut} className="btn">
-              Sign Out
-            </button>
-          </>
+        {user?.email ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={user.photoURL} alt={user.displayName} />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-300 rounded-box w-52"
+            >
+              <li>
+                <button className="btn btn-sm  btn-ghost">
+                  {user.displayName}
+                </button>
+              </li>
+              <li>
+                <span className="text-sm px-2 text-gray-500">{user.email}</span>
+              </li>
+              <li>
+                <button
+                  className="btn  btn-sm btn-ghost"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          </div>
         ) : (
-          <>
-            <Link to="/register">Register</Link>
-            <Link to="/signin">
-              <button className="btn">Sign In</button>
-            </Link>
-          </>
+          <NavLink to="/signin">
+            <button className="btn btn-primary">SignIn</button>
+          </NavLink>
         )}
       </div>
     </div>
