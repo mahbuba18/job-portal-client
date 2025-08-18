@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AuthContext from '../../context/AuthContext/AuthContext';
+import { FcGoogle } from "react-icons/fc";
 
 const SocialLogin = () => {
     const {signInWithGoogle}=useContext(AuthContext);
@@ -16,7 +17,7 @@ const SocialLogin = () => {
     return (
         <div className='m-2'>
              <div className="divider">OR</div>
-            <button onClick={handleGoogleSignIn} className='btn btn-success w-full'> Login with Google</button>
+            <button onClick={handleGoogleSignIn} className='btn btn-success w-full'><FcGoogle className='text-xl' /> Login with Google</button>
             
         </div>
     );

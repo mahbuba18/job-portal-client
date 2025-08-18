@@ -54,6 +54,7 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
+
   const authInfo = {
     user,
     loading,
@@ -63,6 +64,7 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     handleUpdateProfile,
   };
+  
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

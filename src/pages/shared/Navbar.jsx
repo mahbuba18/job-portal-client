@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import logo from "../../assets/jobs_logo.png";
+import { LuLogIn } from "react-icons/lu";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -20,12 +21,16 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+    
       <li>
-        <NavLink to="/">Jobs</NavLink>
+        <NavLink to="/findJobs">Find Jobs</NavLink>
       </li>
       <li>
-        <NavLink to="/">About</NavLink>
+        <NavLink to="/addJob">Upload Job</NavLink>
       </li>
+       <li>
+        <NavLink to="/">About Us</NavLink>
+      </li> 
     </>
   );
   return (
@@ -95,7 +100,7 @@ const Navbar = () => {
           </div>
         ) : (
           <NavLink to="/signin">
-            <button className="btn btn-primary">SignIn</button>
+            <button className="btn btn-primary"><LuLogIn/>SignIn</button>
           </NavLink>
         )}
       </div>

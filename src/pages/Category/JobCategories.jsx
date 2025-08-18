@@ -37,7 +37,7 @@ const JobCategories = () => {
         {categories.map((cat) => (
           <div
             key={cat.id}
-            className="bg-purple-600 rounded-xl shadow hover:shadow-lg overflow-hidden transition"
+            className="bg-indigo-500 rounded-xl shadow hover:shadow-lg overflow-hidden transition"
           >
             <img
               src={cat.image_url}

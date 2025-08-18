@@ -5,7 +5,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import SignIn from "../pages/SignIn/SignIn";
-import JobCategories from "../pages/Category/JobCategories";
+import FindJobs from "../pages/Jobs/FindJobs";
 
   const router = createBrowserRouter([
     {
@@ -26,9 +26,15 @@ import JobCategories from "../pages/Category/JobCategories";
           element:<SignIn></SignIn>
 
         },
+        {
+          path:'/findJobs',
+          element:<FindJobs></FindJobs>
+
+        }
+        // },
         // {
-        //   path:'/categories',
-        //   element:<JobCategories></JobCategories>
+        //   path:'/uploadJob',
+        //   element:
 
         // }
       ]

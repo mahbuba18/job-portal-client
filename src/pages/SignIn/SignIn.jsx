@@ -5,6 +5,8 @@ import AuthContext from "../../context/AuthContext/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { LuLogIn } from "react-icons/lu";
+import { FcGoogle } from "react-icons/fc";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -30,7 +32,7 @@ const SignIn = () => {
   };
   
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-base-200 min-h-screen lg:py-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left w-96">
           <Lottie animationData={loginLottieJSON}></Lottie>
@@ -69,7 +71,7 @@ const SignIn = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary w-full">SignIn</button>
+              <button className="btn btn-primary w-full"><LuLogIn/>SignIn</button>
             </div>
           </form>
           <SocialLogin></SocialLogin>

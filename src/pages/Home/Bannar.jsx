@@ -4,6 +4,8 @@ import { easeOut } from "motion";
 import team1 from "../../assets/team/team1.jpg"
 import team2 from "../../assets/team/team2.jpg"
 import team3 from "../../assets/team/team3.jpg"
+import { MdNotStarted } from "react-icons/md";
+
 
 const Bannar = () => {
   return (
@@ -23,7 +25,7 @@ const Bannar = () => {
             className="max-w-sm w-64 rounded-t-[40px] rounded-br-[40px] border-l-4 border-b-4  border-blue-300 shadow-2xl"
           />
         </div>
-        <div className="flex-1 ">
+        <div className="flex-1  lg:pl-16">
           <motion.h1
             animate={{ x: 50 }}
             transition={{
@@ -39,7 +41,7 @@ const Bannar = () => {
           <p className="py-6">
           "Find the right job faster with smart matching and top employers. Whether you're starting out or leveling up, your next opportunity is here."
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn btn-primary"><MdNotStarted />Get Started</button>
         </div>
       </div>
     </div>
