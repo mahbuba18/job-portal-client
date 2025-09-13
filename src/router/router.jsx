@@ -6,6 +6,9 @@ import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import SignIn from "../pages/SignIn/SignIn";
 import FindJobs from "../pages/Jobs/FindJobs";
+import AddJob from "../pages/Jobs/AddJob";
+import EditJob from "../pages/Jobs/EditJob";
+import AboutUs from "../pages/Home/AboutUs";
 
   const router = createBrowserRouter([
     {
@@ -30,13 +33,17 @@ import FindJobs from "../pages/Jobs/FindJobs";
           path:'/findJobs',
           element:<FindJobs></FindJobs>
 
-        }
-        // },
-        // {
-        //   path:'/uploadJob',
-        //   element:
+        },
+        {
+          path:'/addJob',
+          element:<AddJob></AddJob>
 
-        // }
+        },
+        {
+          path:'/edit-job/:id',
+          element:<EditJob></EditJob>
+
+        }
       ]
     },
   ]);

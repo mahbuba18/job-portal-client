@@ -71,7 +71,7 @@ const SignIn = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary w-full"><LuLogIn/>SignIn</button>
+              <button className="btn bg-gradient-to-r from-blue-500 to-purple-500 w-full"><LuLogIn/>SignIn</button>
             </div>
           </form>
           <SocialLogin></SocialLogin>

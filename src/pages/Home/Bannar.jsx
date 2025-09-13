@@ -41,7 +41,7 @@ const Bannar = () => {
           <p className="py-6">
           "Find the right job faster with smart matching and top employers. Whether you're starting out or leveling up, your next opportunity is here."
           </p>
-          <button className="btn btn-primary"><MdNotStarted />Get Started</button>
+          <button className="btn bg-gradient-to-r from-blue-500 to-purple-500"><MdNotStarted />Get Started</button>
         </div>
       </div>
     </div>

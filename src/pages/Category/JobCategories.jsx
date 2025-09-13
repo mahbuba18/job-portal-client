@@ -29,7 +29,7 @@ const JobCategories = () => {
   }
 
   return (
-    <div className="p-8 bg-gray-600">
+    <div  className="p-8 bg-gray-600">
       <h2 className="text-3xl font-bold mb-6 text-center text-white">
         Explore Job Categories
       </h2>
@@ -37,7 +37,7 @@ const JobCategories = () => {
         {categories.map((cat) => (
           <div
             key={cat.id}
-            className="bg-indigo-500 rounded-xl shadow hover:shadow-lg overflow-hidden transition"
+            className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl shadow hover:shadow-lg overflow-hidden hover:-translate-y-2 transition duration-500"
           >
             <img
               src={cat.image_url}
