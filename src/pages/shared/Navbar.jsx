@@ -9,6 +9,18 @@ const Navbar = () => {
 
   const [scroll, setScroll] = useState(false);
 
+  //for dark or light mode
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  const handleToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  };
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   // Add scroll listener
   useEffect(() => {
     const handleScroll = () => {
@@ -40,9 +52,7 @@ const Navbar = () => {
         <NavLink to="/addJob">Upload Job</NavLink>
       </li>
       <li>
-        <a href="#about" >
-          About Us
-        </a>
+        <a href="#about">About Us</a>
       </li>
     </>
   );
@@ -89,7 +99,14 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
 
-        <div className="navbar-end">
+        <div className="navbar-end gap-3">
+          <label
+            className="cursor-pointer text-3xl  transition-all duration-300 ease-in-out hover:scale-110"
+            onClick={handleToggle}
+          >
+            {theme === "dark" ? "🌙" : "☀️"}
+          </label>
+
           {user?.email ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

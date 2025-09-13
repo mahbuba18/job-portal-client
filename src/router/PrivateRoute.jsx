@@ -1,25 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
-import Home from "./";
-import Login from "./pages/Login";
-import AddJob from "./pages/AddJob";
-import Dashboard from "./pages/Dashboard";
+import React, { useContext } from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import AuthContext from "../context/AuthContext/AuthContext";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes */}
-        <Route element={<PrivateRoute />}>
-          <Route path="/addJob" element={<AddJob />} />
-          <Route path="/findJob" element={<Dashboard />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-}
+const PrivateRoute = () => {
+  const { user, loading } = useContext(AuthContext);
+  const loaction = useLocation();
 
-export default App;
+  if (loading) return <div>Loading...</div>;
+
+  
+  return user ? <Outlet /> : <Navigate to="/signin" state={{from: loaction.pathname}}/>;
+};
+
+export default PrivateRoute;

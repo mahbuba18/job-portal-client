@@ -3,26 +3,41 @@ import React, { useContext } from "react";
 import loginLottieJSON from "../../assets/Lotti/login.json";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { LuLogIn } from "react-icons/lu";
-import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+ 
+  const from = location.state?.from || null;
+  console.log(from);
 
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     signInUser(email, password)
       .then((result) => {
-        toast.success("User signed in successfully");
-        navigate("/");
+        const loggedUser = result.user;
+
+        loggedUser.getIdToken().then((token) => {
+          localStorage.setItem("token", token);
+
+          Swal.fire({
+            icon: "success",
+            title: "Successfully logged in",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          navigate(from ? from:'/'); 
+        });
       })
       .catch((error) => {
         const errorMessage =
@@ -30,7 +45,7 @@ const SignIn = () => {
         toast.error(errorMessage);
       });
   };
-  
+
   return (
     <div className="hero bg-base-200 min-h-screen lg:py-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -71,10 +86,13 @@ const SignIn = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-gradient-to-r from-blue-500 to-purple-500 w-full"><LuLogIn/>SignIn</button>
+              <button className="btn bg-gradient-to-r from-blue-500 to-purple-500 w-full">
+                <LuLogIn />
+                SignIn
+              </button>
             </div>
           </form>
-          <SocialLogin></SocialLogin>
+          <SocialLogin from={from} />
           <div>
             <p className="text-center m-4">
               Do not have an account?{" "}

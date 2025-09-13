@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 
 const JobCategories = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   // console.log("Categories:", categories);
+  const navigate=useNavigate();
 
   useEffect(() => {
     axios
@@ -18,6 +20,15 @@ const JobCategories = () => {
       .catch((err) => console.error(err));
     setLoading(false);
   }, []);
+
+  const handleRedirect=(categoryId)=>{
+    navigate('/findJobs',{
+      state:{
+        categoryId
+      }
+    })
+
+  }
 
 //for loading
   if (loading) {
@@ -37,6 +48,7 @@ const JobCategories = () => {
         {categories.map((cat) => (
           <div
             key={cat.id}
+            onClick={()=>handleRedirect(cat.name)}
             className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl shadow hover:shadow-lg overflow-hidden hover:-translate-y-2 transition duration-500"
           >
             <img
