@@ -125,7 +125,7 @@ const FindJobs = () => {
       )}
 
       {/* Search Form */}
-      <form className="flex justify-center mb-6 gap-2">
+      <form className="flex justify-center mb-6 gap-2 lg:gap-4">
         <input
           type="text"
           value={search}
@@ -137,7 +137,7 @@ const FindJobs = () => {
           name="category_id"
           value={seletedCategory}
           onChange={(e) => setSeletedCategory(e.target.value)}
-          className="input input-bordered border-0 w-full max-w-xs"
+          className="input input-bordered  border-0 bg-blue-400 w-full max-w-xs"
         >
           <option value="">Select Category</option>
           {categories.map((cat) => (
